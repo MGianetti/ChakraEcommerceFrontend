@@ -15,7 +15,7 @@ export default function NewProductPage(props) {
     <>
       <Container maxWidth="1080px">
         <Flex justify="center" padding="40px 0">
-          <Heading>Cadastrar novo produto:</Heading>
+          <Heading>Cadastrar novo produto</Heading>
         </Flex>
         <Flex
           w="100%"

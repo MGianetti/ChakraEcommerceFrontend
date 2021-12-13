@@ -6,9 +6,9 @@ import {
   Heading,
 } from '@chakra-ui/react';
 
-import ChartIcon from './chart-item/chart-item.component';
+import ChartIcon from './cart-item/cart-item.component';
 
-export default function ChartPage(props) {
+export default function CartPage(props) {
   return (
     <>
       <Container maxWidth="1080px">
