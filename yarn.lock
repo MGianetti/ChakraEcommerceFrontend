@@ -1734,15 +1734,15 @@
     stylis "4.0.13"
 
 "@emotion/cache@^11.7.1":
-  version "11.6.0"
-  resolved "https://npm.apple.com/@emotion/cache/-/cache-11.6.0.tgz#65fbdbbe4382f1991d8b20853c38e63ecccec9a1"
-  integrity sha1-ZfvbvkOC8ZkdiyCFPDjmPszOyaE=
+  version "11.7.1"
+  resolved "https://npm.apple.com/@emotion/cache/-/cache-11.7.1.tgz#08d080e396a42e0037848214e8aa7bf879065539"
+  integrity sha1-CNCA45akLgA3hIIU6Kp7+HkGVTk=
   dependencies:
     "@emotion/memoize" "^0.7.4"
     "@emotion/sheet" "^1.1.0"
     "@emotion/utils" "^1.0.0"
     "@emotion/weak-memoize" "^0.2.5"
-    stylis "^4.0.10"
+    stylis "4.0.13"
 
 "@emotion/hash@^0.8.0":
   version "0.8.0"
@@ -9882,7 +9882,7 @@ react-focus-lock@2.5.2:
     use-callback-ref "^1.2.5"
     use-sidecar "^1.0.5"
 
-react-icons@^3.0.0:
+react-icons@^3.11.0:
   version "3.11.0"
   resolved "https://npm.apple.com/react-icons/-/react-icons-3.11.0.tgz#2ca2903dfab8268ca18ebd8cc2e879921ec3b254"
   integrity sha1-LKKQPfq4Joyhjr2Mwuh5kh7DslQ=
@@ -9898,6 +9898,11 @@ react-is@^17.0.1:
   version "17.0.1"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-17.0.1.tgz#5b3531bd76a645a4c9fb6e693ed36419e3301339"
   integrity sha512-NAnt2iGDXohE5LI7uBnLnqvLQMtzhkiAOLXTmv+qnF9Ky7xAPcX8Up/xWIhxvLVGJvuLiNc4xQLtuqDRzb4fSA==
+
+react-random-image@^1.0.3:
+  version "1.0.3"
+  resolved "https://npm.apple.com/react-random-image/-/react-random-image-1.0.3.tgz#60b80c85e55e08247cd66748d2dc514991ed0375"
+  integrity sha1-YLgMheVeCCR81mdI0txRSZHtA3U=
 
 react-refresh@^0.8.3:
   version "0.8.3"
@@ -11200,7 +11205,7 @@ stylehacks@^4.0.0:
     postcss "^7.0.0"
     postcss-selector-parser "^3.0.0"
 
-stylis@4.0.13, stylis@^4.0.10:
+stylis@4.0.13:
   version "4.0.13"
   resolved "https://npm.apple.com/stylis/-/stylis-4.0.13.tgz#f5db332e376d13cc84ecfe5dace9a2a51d954c91"
   integrity sha1-9dszLjdtE8yE7P5drOmipR2VTJE=
