@@ -1,0 +1,6 @@
+body a {
+  text-decoration: none !important;
+}
+body a:focus {
+  box-shadow: none !important;
+}

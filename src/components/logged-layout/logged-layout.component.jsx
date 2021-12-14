@@ -11,6 +11,8 @@ import {
   Spacer,
 } from '@chakra-ui/react';
 
+import { Link as ReachLink } from 'react-router-dom';
+
 import { RiShoppingCartLine } from 'react-icons/ri';
 
 export default function LoggedLayout(props) {
@@ -27,11 +29,17 @@ export default function LoggedLayout(props) {
             height="100px"
           >
             <Flex width="400px">
-              <Link>Produtos</Link>
+              <Link as={ReachLink} to="/">
+                Produtos
+              </Link>
               <Spacer />
-              <Link>Pedidos</Link>
+              <Link as={ReachLink} to="/pedidos">
+                Pedidos
+              </Link>
               <Spacer />
-              <Link>Novo Produto</Link>
+              <Link as={ReachLink} to="/novo-produto">
+                Novo Produto
+              </Link>
             </Flex>
             <Flex>
               <Menu>
@@ -40,8 +48,16 @@ export default function LoggedLayout(props) {
                   <Tag borderRadius="full">10</Tag>
                 </MenuButton>
                 <MenuList>
-                  <MenuItem>Ver carrinho</MenuItem>
-                  <MenuItem>Logout</MenuItem>
+                  <MenuItem>
+                    <Link as={ReachLink} to="/carrinho" w="100%">
+                      Meu carrinho
+                    </Link>
+                  </MenuItem>
+                  <MenuItem>
+                    <Link as={ReachLink} to="/" w="100%">
+                      Logout
+                    </Link>
+                  </MenuItem>
                 </MenuList>
               </Menu>
             </Flex>

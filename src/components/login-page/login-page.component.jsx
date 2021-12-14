@@ -8,7 +8,10 @@ import {
   ButtonGroup,
   Heading,
   Text,
+  Link,
 } from '@chakra-ui/react';
+
+import { Link as ReachLink } from 'react-router-dom';
 
 export default function LoginPage(props) {
   return (
@@ -29,9 +32,15 @@ export default function LoginPage(props) {
           </Flex>
           <Flex justify="center" alignItems="center" height="200px">
             <ButtonGroup variant="outline" spacing="6">
-              <Button variant="ghost">Cadastro</Button>
+              <Button variant="ghost">
+                <Link as={ReachLink} to="/cadastro" w="100%">
+                  Cadastro
+                </Link>
+              </Button>
               <Button variant="solid" colorScheme="blue">
-                Entrar
+                <Link as={ReachLink} to="/" w="100%">
+                  Entrar
+                </Link>
               </Button>
             </ButtonGroup>
           </Flex>

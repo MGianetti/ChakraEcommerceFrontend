@@ -7,7 +7,10 @@ import {
   Button,
   ButtonGroup,
   Heading,
+  Link,
 } from '@chakra-ui/react';
+
+import { Link as ReachLink } from 'react-router-dom';
 
 export default function SignUpPage(props) {
   return (
@@ -32,7 +35,9 @@ export default function SignUpPage(props) {
           <Flex justify="center" alignItems="center" height="200px">
             <ButtonGroup variant="outline" spacing="6">
               <Button variant="ghost" colorScheme="gray">
-                Voltar
+                <Link as={ReachLink} to="/" w="100%">
+                  Voltar
+                </Link>
               </Button>
               <Button variant="solid" colorScheme="green">
                 Cadastrar
