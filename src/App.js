@@ -100,13 +100,3 @@ function App() {
 }
 
 export default App;
-
-// isUserAuthenticated ? (
-//   <LoggedLayout>
-//     <ProductsListPage />
-//   </LoggedLayout>
-// ) : (
-//   <LoggedOutLayout>
-//     <LoginPage />
-//   </LoggedOutLayout>
-// )
