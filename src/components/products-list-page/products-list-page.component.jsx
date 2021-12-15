@@ -1,7 +1,23 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Container, Flex, Grid, Heading } from '@chakra-ui/react';
 import ProductCard from './product-card/product-card.component';
+import { useDispatch } from 'react-redux';
+import { useEffect, useState } from 'react';
+
+import { getAllItems } from '../../services/items-service/items-service.service';
+import { fetchAllItems } from '../../store/items/itemsSlice';
 
 export default function ProductsListPage(props) {
+  const [itemsForSale, setItemsForSale] = useState([]);
+
+  const dispatch = useDispatch();
+
+  useEffect(async () => {
+    const allItems = await getAllItems();
+    dispatch(fetchAllItems(allItems));
+    setItemsForSale(allItems);
+  }, []);
+
   return (
     <>
       <Container maxWidth="1080px">
@@ -14,20 +30,9 @@ export default function ProductsListPage(props) {
           maxHeight="800px"
           overflow="scroll"
         >
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
+          {itemsForSale.map(itemForSale => {
+            return <ProductCard itemForSale={itemForSale} />;
+          })}
         </Grid>
       </Container>
     </>
