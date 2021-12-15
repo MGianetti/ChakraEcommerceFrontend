@@ -7,7 +7,7 @@ export const userSlice = createSlice({
   initialState,
   reducers: {
     addItem: (state, action) => {
-      state.items = [...state.items, ...action.payload];
+      state.items = [...state.items, action.payload];
     },
     fetchAllItems: (state, action) => {
       state.items = action.payload;
