@@ -12,11 +12,14 @@ import {
 } from '@chakra-ui/react';
 
 import { Link as ReachLink } from 'react-router-dom';
-
 import { RiShoppingCartLine } from 'react-icons/ri';
+import { useDispatch } from 'react-redux';
+
+import { logOut } from '../../store/user/userSlice';
 
 export default function LoggedLayout(props) {
   const { children } = props;
+  const dispatch = useDispatch();
 
   return (
     <>
@@ -54,7 +57,12 @@ export default function LoggedLayout(props) {
                     </Link>
                   </MenuItem>
                   <MenuItem>
-                    <Link as={ReachLink} to="/" w="100%">
+                    <Link
+                      as={ReachLink}
+                      to="/"
+                      w="100%"
+                      onClick={() => dispatch(logOut())}
+                    >
                       Logout
                     </Link>
                   </MenuItem>
