@@ -47,13 +47,13 @@ export default function SignUpPage(props) {
       setIsSignUpLoading(true);
       await signUpNewUser(userSignUp);
       setIsSignUpLoading(false);
+      alert('Usuário criado com sucesso!');
       setUserSignUp({
         email: '',
         password: '',
         userName: '',
         name: '',
       });
-      alert('Usuário criado com sucesso!');
     }
   };
 
