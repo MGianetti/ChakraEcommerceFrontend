@@ -1,4 +1,5 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
+import storeSynchronize from 'redux-localstore';
 
 import userReducer from './user/userSlice';
 import itemsReducer from './items/itemsSlice';
@@ -12,6 +13,10 @@ const defaultReducer = combineReducers({
   cart: cartReducer,
 });
 
-export default configureStore({
+const store = configureStore({
   reducer: defaultReducer,
 });
+
+export default store;
+
+storeSynchronize(store);

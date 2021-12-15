@@ -1,11 +1,14 @@
+import { defineState } from 'redux-localstore';
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = {
+const defaultState = {
   email: null,
   userName: null,
   isAuthenticated: false,
   isAdmin: false,
 };
+
+const initialState = defineState(defaultState)('user');
 
 export const userSlice = createSlice({
   name: 'session',

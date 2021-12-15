@@ -10213,6 +10213,11 @@ redent@^3.0.0:
     indent-string "^4.0.0"
     strip-indent "^3.0.0"
 
+redux-localstore@^1.0.0:
+  version "1.0.0"
+  resolved "https://npm.apple.com/redux-localstore/-/redux-localstore-1.0.0.tgz#be5fd332066460852c941e72ec4780eb275264d9"
+  integrity sha1-vl/TMgZkYIUslB5y7EeA6ydSZNk=
+
 redux-thunk@^2.4.1:
   version "2.4.1"
   resolved "https://npm.apple.com/redux-thunk/-/redux-thunk-2.4.1.tgz#0dd8042cf47868f4b29699941de03c9301a75714"

@@ -16,6 +16,7 @@ import { RiShoppingCartLine } from 'react-icons/ri';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { logOut } from '../../store/user/userSlice';
+import { clearCart } from '../../store/cart/cartSlice';
 
 export default function LoggedLayout(props) {
   const { children } = props;
@@ -63,7 +64,10 @@ export default function LoggedLayout(props) {
                       as={ReachLink}
                       to="/"
                       w="100%"
-                      onClick={() => dispatch(logOut())}
+                      onClick={() => {
+                        dispatch(clearCart());
+                        dispatch(logOut());
+                      }}
                     >
                       Logout
                     </Link>
