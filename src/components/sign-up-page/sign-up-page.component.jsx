@@ -53,6 +53,7 @@ export default function SignUpPage(props) {
         userName: '',
         name: '',
       });
+      alert('Usuário criado com sucesso!');
     }
   };
 
