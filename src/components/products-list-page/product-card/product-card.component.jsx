@@ -3,6 +3,7 @@ import { FaCartPlus } from 'react-icons/fa';
 import { useDispatch } from 'react-redux';
 
 import { addItemToCart } from '../../../store/cart/cartSlice';
+import styles from './product-card.module.css';
 
 export default function ProductCard(props) {
   const { itemForSale } = props;
@@ -13,6 +14,7 @@ export default function ProductCard(props) {
 
   const handleAddToCartClick = item => {
     dispatch(addItemToCart(item));
+    alert('Item adicionado ao carrinho!');
   };
 
   return (
@@ -56,6 +58,7 @@ export default function ProductCard(props) {
           <FaCartPlus
             width="100%"
             onClick={() => handleAddToCartClick(itemForSale)}
+            className={styles.AddToCart}
           />
         </Flex>
       </Flex>
