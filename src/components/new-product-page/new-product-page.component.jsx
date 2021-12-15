@@ -15,6 +15,7 @@ import {
 import { createNewItem } from '../../services/items-service/items-service.service';
 import { addItem } from '../../store/items/itemsSlice';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 export default function NewProductPage(props) {
   const [isLoginLoading, setIsLoginLoading] = useState(false);
@@ -27,7 +28,7 @@ export default function NewProductPage(props) {
   });
 
   const dispatch = useDispatch();
-
+  const navigate = useNavigate();
   const handleFormFieldChange = (event, formKey) => {
     setNewProductData({
       ...newProductData,
@@ -41,12 +42,12 @@ export default function NewProductPage(props) {
       await createNewItem(newProductData);
       dispatch(addItem(newProductData));
       setIsLoginLoading(false);
+      alert('Produto criado com sucesso!');
       setNewProductData({
         price: 0,
         description: '',
         productName: '',
       });
-      alert('Produto criado com sucesso!');
     }
   };
 
@@ -101,8 +102,12 @@ export default function NewProductPage(props) {
         </Flex>
         <Flex justify="center" alignItems="center" height="200px">
           <ButtonGroup variant="outline" spacing="6">
-            <Button variant="ghost" colorScheme="gray">
-              Cancelar
+            <Button
+              variant="ghost"
+              colorScheme="gray"
+              onClick={() => navigate('/')}
+            >
+              Voltar
             </Button>
             <Button
               variant="solid"
