@@ -26,13 +26,30 @@ export default function ProductCard(props) {
     >
       <Flex alignItems="center" margin="30px" direction="column">
         <Flex alignItems="center" justify="space-between" w="100%">
-          <Heading size="lg">{productName}</Heading>
+          <Heading
+            size="lg"
+            title={productName}
+            whiteSpace="nowrap"
+            maxWidth="320px"
+            overflow="hidden"
+            textOverflow="ellipsis"
+          >
+            {productName}
+          </Heading>
           <Badge size="xs" colorScheme="green" height="max-content">
             $ {price}
           </Badge>
         </Flex>
         <Heading size="xs">Descrição</Heading>
-        <Text margin="10px" maxHeight="90px" overflowY="scroll" border="1px">
+        <Text
+          margin="10px"
+          maxHeight="90px"
+          minHeight="90px"
+          w="100%"
+          overflowY="scroll"
+          border="1px"
+          textAlign="left"
+        >
           {description}
         </Text>
         <Flex w="100%" justifyContent="end" marginTop="15px">
