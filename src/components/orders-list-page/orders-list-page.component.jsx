@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Container, Flex, Heading } from '@chakra-ui/react';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -8,11 +8,13 @@ import { fetchAllOrders } from '../../store/orders/ordersSlice';
 import OrderCard from './order-card/order-card.component';
 
 export default function OrdersListPage(props) {
+  const [allOrders, setAllOrders] = useState([]);
   const dispatch = useDispatch();
 
   useEffect(async () => {
-    const allItems = await getAllOrders();
-    dispatch(fetchAllOrders(allItems));
+    const allOrders = await getAllOrders();
+    dispatch(fetchAllOrders(allOrders));
+    setAllOrders(allOrders);
   }, []);
 
   return (
@@ -22,18 +24,9 @@ export default function OrdersListPage(props) {
           <Heading>Pedidos atendidos:</Heading>
         </Flex>
         <Flex w="100%" maxHeight="800px" direction="column" overflowY="scroll">
-          <OrderCard />
-          <OrderCard />
-          <OrderCard />
-          <OrderCard />
-          <OrderCard />
-          <OrderCard />
-          <OrderCard />
-          <OrderCard />
-          <OrderCard />
-          <OrderCard />
-          <OrderCard />
-          <OrderCard />
+          {allOrders.map(order => {
+            return <OrderCard order={order} />;
+          })}
         </Flex>
       </Container>
     </>
