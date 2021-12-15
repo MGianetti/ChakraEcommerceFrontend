@@ -13,13 +13,15 @@ import {
 
 import { Link as ReachLink } from 'react-router-dom';
 import { RiShoppingCartLine } from 'react-icons/ri';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { logOut } from '../../store/user/userSlice';
 
 export default function LoggedLayout(props) {
   const { children } = props;
   const dispatch = useDispatch();
+
+  const cartItemsQuantity = useSelector(state => state.cart.items.length);
 
   return (
     <>
@@ -48,7 +50,7 @@ export default function LoggedLayout(props) {
               <Menu>
                 <MenuButton>
                   <RiShoppingCartLine size={40} />
-                  <Tag borderRadius="full">10</Tag>
+                  <Tag borderRadius="full">{cartItemsQuantity}</Tag>
                 </MenuButton>
                 <MenuList>
                   <MenuItem>
