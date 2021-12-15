@@ -11,6 +11,9 @@ import {
 } from '@chakra-ui/react';
 
 export default function OrderCard(props) {
+  const { order } = props;
+  const { products, id } = order;
+
   return (
     <Flex
       w="100%"
@@ -24,7 +27,7 @@ export default function OrderCard(props) {
       alignItems="center"
     >
       <Heading w="100%" textAlign="left" size="md" marginBottom="20px">
-        Id do pedido: 8237
+        Id do pedido: {id}
       </Heading>
       <Heading w="100%" textAlign="left" size="sm">
         Produtos:
@@ -35,13 +38,20 @@ export default function OrderCard(props) {
             <Tr>
               <Th>Id</Th>
               <Th>Nome do produto</Th>
+              <Th>Preço do produto</Th>
             </Tr>
           </Thead>
           <Tbody>
-            <Tr>
-              <Td>1123</Td>
-              <Td>Tênis</Td>
-            </Tr>
+            {products.map(product => {
+              const { id, productName, price } = product;
+              return (
+                <Tr>
+                  <Td>{id}</Td>
+                  <Td>{productName}</Td>
+                  <Td>${price}</Td>
+                </Tr>
+              );
+            })}
           </Tbody>
         </Table>
       </Box>
