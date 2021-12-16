@@ -1,11 +1,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react';
-import { Container, Flex, Heading } from '@chakra-ui/react';
 import { useDispatch } from 'react-redux';
+import { Container, Flex, Heading } from '@chakra-ui/react';
 
+import OrderCard from './order-card/order-card.component';
 import { getAllOrders } from '../../services/orders-service/orders-service.service';
 import { fetchAllOrders } from '../../store/orders/ordersSlice';
-import OrderCard from './order-card/order-card.component';
 
 export default function OrdersListPage() {
   const [allOrders, setAllOrders] = useState([]);

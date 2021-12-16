@@ -1,5 +1,5 @@
-import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import storeSynchronize from 'redux-localstore';
+import { configureStore, combineReducers } from '@reduxjs/toolkit';
 
 import userReducer from './user/userSlice';
 import itemsReducer from './items/itemsSlice';

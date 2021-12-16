@@ -1,8 +1,9 @@
-import { Flex, Heading, Box, Badge } from '@chakra-ui/react';
 import { useDispatch } from 'react-redux';
 import { FaTrashAlt } from 'react-icons/fa';
+import { Flex, Heading, Box, Badge } from '@chakra-ui/react';
 
 import { removeItemFromCart } from '../../../store/cart/cartSlice';
+
 import styles from './cart-item.module.css';
 
 export default function CartIcon(props) {

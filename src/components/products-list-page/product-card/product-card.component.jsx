@@ -1,8 +1,9 @@
-import { Badge, Box, Flex, Heading, Text } from '@chakra-ui/react';
 import { FaCartPlus } from 'react-icons/fa';
 import { useDispatch } from 'react-redux';
+import { Badge, Box, Flex, Heading, Text } from '@chakra-ui/react';
 
 import { addItemToCart } from '../../../store/cart/cartSlice';
+
 import styles from './product-card.module.css';
 
 export default function ProductCard(props) {

@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import {
   FormControl,
   FormLabel,
@@ -11,9 +13,6 @@ import {
   Textarea,
   FormErrorMessage,
 } from '@chakra-ui/react';
-
-import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 
 import { createNewItem } from '../../services/items-service/items-service.service';
 import { addItem } from '../../store/items/itemsSlice';

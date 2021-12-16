@@ -1,9 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { Container, Flex, Grid, Heading } from '@chakra-ui/react';
-import ProductCard from './product-card/product-card.component';
-import { useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { Container, Flex, Grid, Heading } from '@chakra-ui/react';
 
+import ProductCard from './product-card/product-card.component';
 import { getAllItems } from '../../services/items-service/items-service.service';
 import { fetchAllItems } from '../../store/items/itemsSlice';
 

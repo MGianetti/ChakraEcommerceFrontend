@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link as ReachLink } from 'react-router-dom';
 import {
   FormControl,
   FormLabel,
@@ -14,8 +15,6 @@ import {
 
 import { signUpNewUser } from '../../services/auth-service/auth-service.service';
 import { validateField } from '../utils/validate-field';
-
-import { Link as ReachLink } from 'react-router-dom';
 
 export default function SignUpPage() {
   const [isSignUpLoading, setIsSignUpLoading] = useState(false);

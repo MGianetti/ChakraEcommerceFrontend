@@ -7,7 +7,7 @@ export const ordersSlice = createSlice({
   initialState,
   reducers: {
     addOrder: (state, action) => {
-      state.orders = [...state.orders, ...action.payload];
+      state.orders = [...state.orders, action.payload];
     },
     fetchAllOrders: (state, action) => {
       state.items = action.payload;

@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const getAllItems = async newUser => {
+export const getAllItems = async () => {
   const { data } = await axios.get('http://localhost:3001/api/product/all', {
     headers: {
       'Content-Type': 'application/json',

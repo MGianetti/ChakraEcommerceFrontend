@@ -1,3 +1,6 @@
+import { Link as ReachLink } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { RiShoppingCartLine } from 'react-icons/ri';
 import {
   Box,
   Container,
@@ -11,10 +14,6 @@ import {
   Spacer,
   Heading,
 } from '@chakra-ui/react';
-
-import { Link as ReachLink } from 'react-router-dom';
-import { RiShoppingCartLine } from 'react-icons/ri';
-import { useDispatch, useSelector } from 'react-redux';
 
 import { logOut } from '../../store/user/userSlice';
 import { clearCart } from '../../store/cart/cartSlice';

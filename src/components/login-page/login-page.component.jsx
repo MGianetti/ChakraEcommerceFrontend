@@ -1,5 +1,6 @@
 import { useState } from 'react';
-
+import { useDispatch } from 'react-redux';
+import { Link as ReachLink } from 'react-router-dom';
 import {
   FormControl,
   FormLabel,
@@ -13,9 +14,6 @@ import {
   Link,
   FormErrorMessage,
 } from '@chakra-ui/react';
-
-import { Link as ReachLink } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
 
 import { authUser } from '../../services/auth-service/auth-service.service';
 import { logIn } from '../../store/user/userSlice';
