@@ -9,6 +9,7 @@ import {
   MenuItem,
   MenuList,
   Spacer,
+  Heading,
 } from '@chakra-ui/react';
 
 import { Link as ReachLink } from 'react-router-dom';
@@ -20,9 +21,15 @@ import { clearCart } from '../../store/cart/cartSlice';
 
 export default function LoggedLayout(props) {
   const { children } = props;
+  const { userName, isAdmin } = useSelector(state => state.user);
+  const cartItemsQuantity = useSelector(state => state.cart.items.length);
+
   const dispatch = useDispatch();
 
-  const cartItemsQuantity = useSelector(state => state.cart.items.length);
+  const handleLogout = () => {
+    dispatch(clearCart());
+    dispatch(logOut());
+  };
 
   return (
     <>
@@ -43,12 +50,17 @@ export default function LoggedLayout(props) {
                 Pedidos
               </Link>
               <Spacer />
-              <Link as={ReachLink} to="/novo-produto">
-                Novo Produto
-              </Link>
+              {isAdmin && (
+                <Link as={ReachLink} to="/novo-produto">
+                  Novo Produto
+                </Link>
+              )}
             </Flex>
-            <Flex>
+            <Flex alignItems="center">
               <Menu>
+                <Heading size="sm" marginRight="20px" color="messenger.800">
+                  {userName}
+                </Heading>
                 <MenuButton>
                   <RiShoppingCartLine size={40} />
                   <Tag borderRadius="full">{cartItemsQuantity}</Tag>
@@ -60,15 +72,7 @@ export default function LoggedLayout(props) {
                     </Link>
                   </MenuItem>
                   <MenuItem>
-                    <Link
-                      as={ReachLink}
-                      to="/"
-                      w="100%"
-                      onClick={() => {
-                        dispatch(clearCart());
-                        dispatch(logOut());
-                      }}
-                    >
+                    <Link as={ReachLink} to="/" w="100%" onClick={handleLogout}>
                       Logout
                     </Link>
                   </MenuItem>

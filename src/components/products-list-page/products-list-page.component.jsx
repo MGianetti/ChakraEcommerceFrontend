@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react';
 import { getAllItems } from '../../services/items-service/items-service.service';
 import { fetchAllItems } from '../../store/items/itemsSlice';
 
-export default function ProductsListPage(props) {
+export default function ProductsListPage() {
   const [itemsForSale, setItemsForSale] = useState([]);
 
   const dispatch = useDispatch();

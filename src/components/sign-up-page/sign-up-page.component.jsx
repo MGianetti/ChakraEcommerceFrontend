@@ -13,12 +13,19 @@ import {
 } from '@chakra-ui/react';
 
 import { signUpNewUser } from '../../services/auth-service/auth-service.service';
+import { validateField } from '../utils/validate-field';
 
 import { Link as ReachLink } from 'react-router-dom';
 
-export default function SignUpPage(props) {
+export default function SignUpPage() {
   const [isSignUpLoading, setIsSignUpLoading] = useState(false);
-  const [hasInputErrors, setInputErrors] = useState(false);
+
+  const [isFormValidAt, setIsFormValidAt] = useState({
+    email: true,
+    password: true,
+    userName: true,
+    name: true,
+  });
 
   const [userSignUp, setUserSignUp] = useState({
     email: '',
@@ -27,23 +34,23 @@ export default function SignUpPage(props) {
     name: '',
   });
 
-  const handleFormFieldChange = (event, formKey) => {
-    setUserSignUp({ ...userSignUp, [formKey]: event.currentTarget.value });
-  };
+  const { email, password, userName, name } = userSignUp;
 
-  const isValidForm = () => {
-    const { email, password, userName, name } = userSignUp;
-
-    if (email === '' || password === '' || userName === '' || name === '') {
-      setInputErrors(true);
-      return false;
-    }
-    setInputErrors(false);
-    return true;
+  const handleFormFieldChange = (event, field) => {
+    setIsFormValidAt({
+      ...isFormValidAt,
+      [field]: validateField[field](event.currentTarget.value),
+    });
+    setUserSignUp({ ...userSignUp, [field]: event.currentTarget.value });
   };
 
   const handleSignUpClick = async e => {
-    if (isValidForm()) {
+    if (
+      isFormValidAt.email &&
+      isFormValidAt.password &&
+      isFormValidAt.password &&
+      isFormValidAt.userName
+    ) {
       setIsSignUpLoading(true);
       await signUpNewUser(userSignUp);
       setIsSignUpLoading(false);
@@ -54,10 +61,10 @@ export default function SignUpPage(props) {
         userName: '',
         name: '',
       });
+    } else {
+      alert('Preencha o form corretamente!');
     }
   };
-
-  const { email, password, userName, name } = userSignUp;
 
   return (
     <>
@@ -66,8 +73,17 @@ export default function SignUpPage(props) {
           <Flex justify="center" height="150px">
             <Heading>Cadastre seu usuário</Heading>
           </Flex>
-          <Flex justify="center" alignItems="center" height="300px">
-            <FormControl id="email" width="400px" isInvalid={hasInputErrors}>
+          <Flex
+            justify="center"
+            alignItems="center"
+            height="300px"
+            direction="column"
+          >
+            <FormControl
+              id="email"
+              width="400px"
+              isInvalid={!isFormValidAt.email}
+            >
               <FormLabel>Endereço de email</FormLabel>
               <Input
                 type="email"
@@ -75,6 +91,12 @@ export default function SignUpPage(props) {
                 value={email}
               />
               <FormErrorMessage>Digite um email válido</FormErrorMessage>
+            </FormControl>
+            <FormControl
+              id="password"
+              width="400px"
+              isInvalid={!isFormValidAt.password}
+            >
               <FormLabel>Senha</FormLabel>
               <Input
                 type="password"
@@ -82,12 +104,24 @@ export default function SignUpPage(props) {
                 value={password}
               />
               <FormErrorMessage>Digite uma senha válida</FormErrorMessage>
+            </FormControl>
+            <FormControl
+              id="userName"
+              width="400px"
+              isInvalid={!isFormValidAt.userName}
+            >
               <FormLabel>Nome de usuário</FormLabel>
               <Input
                 onChange={event => handleFormFieldChange(event, 'userName')}
                 value={userName}
               />
               <FormErrorMessage>Digite um usuário válido</FormErrorMessage>
+            </FormControl>
+            <FormControl
+              id="name"
+              width="400px"
+              isInvalid={!isFormValidAt.name}
+            >
               <FormLabel>Nome completo</FormLabel>
               <Input
                 onChange={event => handleFormFieldChange(event, 'name')}

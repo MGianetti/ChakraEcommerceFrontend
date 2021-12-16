@@ -8,8 +8,8 @@ import styles from './product-card.module.css';
 export default function ProductCard(props) {
   const { itemForSale } = props;
   const { id, productName, price, description } = itemForSale;
-  const itemKey = `product-key-${id}`;
 
+  const itemKey = `product-key-${id}`;
   const dispatch = useDispatch();
 
   const handleAddToCartClick = item => {

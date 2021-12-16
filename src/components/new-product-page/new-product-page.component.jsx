@@ -12,14 +12,21 @@ import {
   FormErrorMessage,
 } from '@chakra-ui/react';
 
-import { createNewItem } from '../../services/items-service/items-service.service';
-import { addItem } from '../../store/items/itemsSlice';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-export default function NewProductPage(props) {
+import { createNewItem } from '../../services/items-service/items-service.service';
+import { addItem } from '../../store/items/itemsSlice';
+import { validateField } from '../utils/validate-field';
+
+export default function NewProductPage() {
   const [isLoginLoading, setIsLoginLoading] = useState(false);
-  const [hasInputErrors, setInputErrors] = useState(false);
+
+  const [isFormValidAt, setIsFormValidAt] = useState({
+    price: true,
+    description: true,
+    productName: true,
+  });
 
   const [newProductData, setNewProductData] = useState({
     price: 0,
@@ -29,15 +36,24 @@ export default function NewProductPage(props) {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const handleFormFieldChange = (event, formKey) => {
+
+  const handleFormFieldChange = (event, field) => {
+    setIsFormValidAt({
+      ...isFormValidAt,
+      [field]: validateField[field](event.currentTarget.value),
+    });
     setNewProductData({
       ...newProductData,
-      [formKey]: event.currentTarget.value,
+      [field]: event.currentTarget.value,
     });
   };
 
-  const handleRegisterClick = async e => {
-    if (isValidForm()) {
+  const handleRegisterClick = async () => {
+    if (
+      isFormValidAt.description &&
+      isFormValidAt.price &&
+      isFormValidAt.productName
+    ) {
       setIsLoginLoading(true);
       await createNewItem(newProductData);
       dispatch(addItem(newProductData));
@@ -48,17 +64,9 @@ export default function NewProductPage(props) {
         description: '',
         productName: '',
       });
+    } else {
+      alert('Preencha o form corretamente!');
     }
-  };
-
-  const isValidForm = () => {
-    const { price, description, productName } = newProductData;
-    if (price === '' || description === '' || productName === '') {
-      setInputErrors(true);
-      return false;
-    }
-    setInputErrors(false);
-    return true;
   };
 
   const { productName, description, price } = newProductData;
@@ -72,10 +80,16 @@ export default function NewProductPage(props) {
         <Flex
           w="100%"
           maxHeight="800px"
-          direction="row"
-          justifyContent="center"
+          justify="center"
+          alignItems="center"
+          height="300px"
+          direction="column"
         >
-          <FormControl id="email" width="400px" isInvalid={hasInputErrors}>
+          <FormControl
+            id="productName"
+            width="400px"
+            isInvalid={!isFormValidAt.productName}
+          >
             <FormLabel>Nome do produto</FormLabel>
             <Input
               type="text"
@@ -83,6 +97,12 @@ export default function NewProductPage(props) {
               onChange={event => handleFormFieldChange(event, 'productName')}
             />
             <FormErrorMessage>Digite um nome válido</FormErrorMessage>
+          </FormControl>
+          <FormControl
+            id="description"
+            width="400px"
+            isInvalid={!isFormValidAt.description}
+          >
             <FormLabel>Descrição</FormLabel>
             <Textarea
               maxH="200px"
@@ -91,6 +111,12 @@ export default function NewProductPage(props) {
               onChange={event => handleFormFieldChange(event, 'description')}
             />
             <FormErrorMessage>Digite uma descrição válida</FormErrorMessage>
+          </FormControl>
+          <FormControl
+            id="price"
+            width="400px"
+            isInvalid={!isFormValidAt.price}
+          >
             <FormLabel>Preço</FormLabel>
             <Input
               type="number"

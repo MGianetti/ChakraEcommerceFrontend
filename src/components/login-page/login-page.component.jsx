@@ -15,52 +15,49 @@ import {
 } from '@chakra-ui/react';
 
 import { Link as ReachLink } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
 import { authUser } from '../../services/auth-service/auth-service.service';
 import { logIn } from '../../store/user/userSlice';
-import { useDispatch } from 'react-redux';
+import { validateField } from '../utils/validate-field';
 
-export default function LoginPage(props) {
+export default function LoginPage() {
   const [isLoginLoading, setIsLoginLoading] = useState(false);
-  const [hasInputErrors, setInputErrors] = useState(false);
+  const [isFormValidAt, setIsFormValidAt] = useState({
+    email: true,
+    password: true,
+  });
 
   const [userCredentials, setUserCredentials] = useState({
     email: '',
     password: '',
   });
 
+  const { email, password } = userCredentials;
+
   const dispatch = useDispatch();
 
-  const handleEmailChange = event => {
-    const { currentTarget } = event;
-    setUserCredentials({ ...userCredentials, email: currentTarget.value });
-  };
-
-  const handlePasswordChange = event => {
-    const { currentTarget } = event;
-    setUserCredentials({ ...userCredentials, password: currentTarget.value });
+  const handleFormFieldChange = (event, field) => {
+    setIsFormValidAt({
+      ...isFormValidAt,
+      [field]: validateField[field](event.currentTarget.value),
+    });
+    setUserCredentials({
+      ...userCredentials,
+      [field]: event.currentTarget.value,
+    });
   };
 
   const handleLoginClick = async e => {
-    if (isValidForm()) {
+    if (isFormValidAt.email && isFormValidAt.password) {
       setIsLoginLoading(true);
       const answer = await authUser(userCredentials);
       dispatch(logIn(answer));
       setIsLoginLoading(false);
+    } else {
+      alert('Preencha o form corretamente!');
     }
   };
-
-  const isValidForm = () => {
-    const { email, password } = userCredentials;
-    if (email === '' || password === '') {
-      setInputErrors(true);
-      return false;
-    }
-    setInputErrors(false);
-    return true;
-  };
-
-  const { email, password } = userCredentials;
 
   return (
     <>
@@ -70,20 +67,35 @@ export default function LoginPage(props) {
             <Heading>Eshop</Heading>
             <Text>Faça seu login para comprar</Text>
           </Flex>
-          <Flex justify="center" alignItems="center" height="100px">
-            <FormControl id="email" width="300px" isInvalid={hasInputErrors}>
+          <Flex
+            justify="center"
+            alignItems="center"
+            height="100px"
+            direction="column"
+          >
+            <FormControl
+              id="email"
+              width="300px"
+              isInvalid={!isFormValidAt.email}
+            >
               <FormLabel>Endereço de email</FormLabel>
               <Input
                 type="email"
-                onChange={handleEmailChange}
+                onChange={event => handleFormFieldChange(event, 'email')}
                 value={email}
                 isRequired
               />
               <FormErrorMessage>Digite um email válido</FormErrorMessage>
+            </FormControl>
+            <FormControl
+              id="email"
+              width="300px"
+              isInvalid={!isFormValidAt.password}
+            >
               <FormLabel>Senha</FormLabel>
               <Input
                 type="password"
-                onChange={handlePasswordChange}
+                onChange={event => handleFormFieldChange(event, 'password')}
                 value={password}
                 isRequired
               />

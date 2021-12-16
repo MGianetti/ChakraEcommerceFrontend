@@ -1,6 +1,7 @@
 import { Container, Flex } from '@chakra-ui/react';
 
-export default function LoggedOutLayout({ children }) {
+export default function LoggedOutLayout(props) {
+  const { children } = props;
   return (
     <>
       <Container justify="center">

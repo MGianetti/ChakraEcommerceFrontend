@@ -14,22 +14,15 @@ import ChartItem from './cart-item/cart-item.component';
 import { clearCart } from '../../store/cart/cartSlice';
 import { createNewOrder } from '../../services/orders-service/orders-service.service';
 
-export default function CartPage(props) {
-  const cartItems = useSelector(state => state.cart.items);
+export default function CartPage() {
   const [totalValue, setTotalValue] = useState(0);
   const [isOrderFinishingLoading, setIsOrderFinishingLoading] = useState(false);
 
+  const cartItems = useSelector(state => state.cart.items);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    setTotalValue(
-      cartItems.reduce(
-        (cartValue, currentItem) => cartValue + currentItem.price,
-        0
-      )
-    );
-  }, [cartItems]);
+  const isCartEmpty = cartItems.length === 0;
 
   const handleFinishOrder = async () => {
     setIsOrderFinishingLoading(true);
@@ -42,15 +35,22 @@ export default function CartPage(props) {
     alert('Seu pedido foi realizado!');
   };
 
+  useEffect(() => {
+    setTotalValue(
+      cartItems.reduce(
+        (cartValue, currentItem) => cartValue + currentItem.price,
+        0
+      )
+    );
+  }, [cartItems]);
+
   return (
     <>
       <Container maxWidth="1080px">
         <Flex justify="center" padding="40px 0">
           <Heading>Meu carrinho</Heading>
         </Flex>
-        {cartItems.length === 0 && (
-          <Heading size="md">Seu carrinho está vazio</Heading>
-        )}
+        {isCartEmpty && <Heading size="md">Seu carrinho está vazio</Heading>}
         <Flex w="100%" maxHeight="300px" direction="column" overflowY="scroll">
           {cartItems.map(cartItem => (
             <ChartItem cartItem={cartItem} />
@@ -73,6 +73,7 @@ export default function CartPage(props) {
               colorScheme="green"
               onClick={handleFinishOrder}
               isLoading={isOrderFinishingLoading}
+              disabled={isCartEmpty}
             >
               Finalizar pedido
             </Button>
